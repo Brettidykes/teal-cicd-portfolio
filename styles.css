@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --transition: cubic-bezier(.1, .7, 0, 1);
+}
+
+body {
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='69.283' height='40' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(225, 10%, 8%, 1)'/><path d='M46.189-20L57.736 0M46.189 20l11.547 20m-46.189 0l11.547 20M11.547 0l11.547 20m40.415 30H40.415M28.868 30H5.774m23.094-40H5.774m57.735 20H40.415m0 20L28.868 50m11.547-60L28.868 10m46.188 0L63.509 30M5.774 10L-5.773 30m75.056 10H46.189L34.64 20 46.19 0h23.094C73.13 6.667 76.98 13.333 80.83 20zM57.736 60H34.64L23.094 40l11.547-20h23.095c3.848 6.667 7.698 13.333 11.547 20L57.736 60zm0-40H34.64L23.094 0l11.547-20h23.095L69.283 0c-3.87 6.7-8.118 14.06-11.547 20zM34.64 60H11.547L0 40l11.547-20h23.094L46.19 40 34.64 60zm0-40H11.547L0 0l11.547-20h23.094L46.19 0 34.64 20zM23.094 40H0l-5.773-10-5.774-10L0 0h23.094l11.547 20-11.547 20z'  stroke-width='1' stroke='hsla(225, 5%, 10%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  user-select:none;
+    font-family: 'Switzer', sans-serif;
+    background-color: #141313;
+    font-family: "Raleway", sans-serif;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.logopic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    gap: 5rem; /* Add gap between the button and the text */
+    padding: 0 10px; /* Add padding to the sides for responsiveness */
+    width: 100%;
+    height: auto;
+}
+
+.logopicimage {
+    width: 15rem; /* Default size */
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .logopicimage {
+        width: 200px; /* Larger size for larger screens */
+    }
+}
+
+@media (min-width: 1200px) {
+    .logopicimage {
+        width: 300px; /* Even larger size for very large screens */
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    gap: 5rem; /* Add gap between the button and the text */
+    padding: 0 10px; /* Add padding to the sides for responsiveness */
+}
+
+
+.btnCloud {
+  background-color: transparent;
+  position: relative;
+  fill: #fff;
+  border: none;
+}
+
+.btnCloud::after {
+  content: 'Hi!';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 3px 9px;
+  border-radius: 5px;
+  transition: 200ms linear;
+  transition-delay: 200ms;
+  color: black;
+  font-size: 13px;
+  visibility: hidden;
+}
+
+.icon {
+  transform: scale(3.4);
+  transition: 200ms linear;
+}
+
+.btnCloud:hover > .icon {
+  transform: scale(3.7);
+}
+
+.btnCloud:hover > .icon path {
+  fill: #fff;
+  cursor: pointer;
+}
+
+.btnCloud:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: -150%;
+}
+
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+
+.logo-text {
+    font-size: 5rem;
+}
+
+.subheader-text {
+    font-size: 2rem;
+    color: #ccc; /* Optional: Add a different color for the subheader */
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 22rem); /* Adjust height considering the header */
+}
+
+.items {
+    display: flex;
+    gap: 0.4rem;
+    perspective: calc(var(--index) * 35);
+}
+
+.item {
+    width: calc(var(--index) * 5);
+    height: calc(var(--index) * 5);
+    background-color: #222;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    filter: grayscale(0) brightness(1);
+    transition: transform 1.25s var(--transition), filter 3s var(--transition), width 1.25s var(--transition);
+    will-change: transform, filter, rotateY, width;
+    position: relative; /* Position relative to handle ::before and ::after pseudo-elements */
+}
+
+.item::before, .item::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    right: calc(var(--index) * -1);
+}
+
+.item::after {
+    left: calc(var(--index) * -1);
+}
+
+.items .item:hover {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 10));
+}
+
+/*Right*/
+
+.items .item:hover + * {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
+    z-index: -1;
+}
+
+.items .item:hover + * + * {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
+    z-index: -2;
+}
+
+.items .item:hover + * + * + * {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
+    z-index: -3;
+}
+
+.items .item:hover + * + * + * + * {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * .6)) rotateY(15deg);
+    z-index: -4;
+}
+
+/*Left*/
+
+.items .item:has( + :hover) {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
+}
+
+.items .item:has( + * + :hover) {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
+}
+
+.items .item:has( + * + * + :hover) {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
+}
+
+.items .item:has( + * + * + * + :hover) {
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
+}
+
+.items .item:active, .items .item:focus {
+    width: 28vw;
+    filter: inherit;
+    z-index: 100;
+    transform: translateZ(calc(var(--index) * 10));
+    margin: 0 .45vw;
+}
