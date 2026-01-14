@@ -14,4 +14,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Deploy website to Dev
-        run: aws s3 sync . s3://YOUR-PROJECT-NAME-dev --acl public-read --delete
+        run: aws s3 sync . s3://teal-cicd-dev --acl public-read --delete
